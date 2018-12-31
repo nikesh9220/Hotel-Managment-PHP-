@@ -1,0 +1,171 @@
+<html>
+	<head>
+		<style type="text/css">
+			div{
+				border:2px solid GREEN;
+				padding:10px 40px;
+				background:red;
+				width:300px;
+				border-radius:20px;
+				}
+			
+		</style>
+		<script>
+		function validate()
+		{
+			var name=document.form.name.value;
+			if (name==null || name=="")
+			{
+				alert("Enter your name");
+				document.form.name.focus();
+				return false;
+			}
+			var name=document.form.rt.value;
+			if (name==null || name=="")
+			{
+				alert("Enter your name");
+				document.form.rt.focus();
+				return false;
+			}
+			var number=document.form.rn.value;
+			if (number==null || number=="")
+			{
+				alert("Enter your number");
+				document.form.rn.focus();
+				return false;
+			}
+		}
+		</script>
+	</head>
+<body bgcolor=#f88a1d>
+</body>
+<?php
+	$con=mysql_connect('localhost','root','');
+	if($con)
+	{
+		mysql_select_db("hms",$con);
+		echo"<div>";
+		print_r($_POST);
+		if(isset($_REQUEST['action']))
+		{
+			$Rn="";
+			$Rt="";
+			$bed="";
+			$price="";
+		
+			if($_REQUEST['action']=='edit' or $_REQUEST['action']=='delete')	
+			{
+				$Rno=$_REQUEST['no'];
+				$result=mysql_query("select * from room_detail where Room_no='$Rno'");
+				
+				$row=mysql_fetch_array($result);
+				$Rn=$row['Room_no'];
+				$Rt=$row['Rm_type'];
+				$bed=$row['Rm_No_bed'];
+				$price=$row['Rm_price'];
+			}
+				
+			if(isset($_POST['save']))
+			{
+				$Rn=$_POST['rn'];
+				$Rt=$_POST['rt'];
+				$bed=$_POST['bed'];
+				$price=$_POST['rp'];	
+				
+				if($_REQUEST['action']=='edit')
+				{
+					$Rn=$row['Room_no'];
+					$change=mysql_query("update Room_detail set  Rm_type='$Rt' , Rm_No_bed='$bed' ,Rm_price='$price' where Room_no='$Rn'");
+					if($change>0)
+					{
+						echo "Your profile updated successfully...";
+						header("location:room.php");
+					}			
+				}
+				else if($_REQUEST['action']=='new')
+				{
+					$insert=mysql_query("insert into Room_detail values($Rn,'$Rt',$bed ,$price)");
+					if($insert>0)
+					{
+						echo "Your profile inserted successfully...";
+						header("location:room.php");
+						/*$rid=mysql_insert_id($con);
+						echo $rid;*/
+					}
+				
+				}
+				else if($_REQUEST['action']=='delete')
+				{
+					$Rn=$row['Room_no'];
+					$delete=mysql_query("delete from room_detail where Room_no='$Rn'");
+					if($delete>0)
+					{
+						echo"delete successfully..";
+						header("location:room.php");
+					}
+				}
+			}	
+			if(isset($_POST['back']))
+			{
+				header("location:room.php");
+			}
+			
+			echo"<form method='POST' name='form' onsubmit='return validate();'><fieldset>";
+			echo"<table border=0><tr>
+					<td>Room no: </td>
+					<td><input type='text' name='rn' value='$Rn' ";
+					if($_REQUEST['action']=='delete' or $_REQUEST['action']=='edit')	
+					{
+						echo " disabled ";
+					}
+			echo"></td></tr>";
+			echo"<tr>
+					<td>Room type: </td>
+					<td><input type='text' name='rt' value='$Rt'";
+					if($_REQUEST['action']=='delete')
+					{
+						echo " disabled ";
+					}
+			echo"></td></tr>";
+			echo"<tr>
+					<td>Room bed: </td>
+					<td><input type='text' name='bed' value='$bed'";
+					if($_REQUEST['action']=='delete')
+					{
+						echo " disabled ";
+					}						
+			echo"></td></tr>";
+			echo"<tr>
+					<td>Room price: </td>
+					<td><input type='text' name='rp' value='$price' ";
+					if($_REQUEST['action']=='delete')
+					{
+						echo " disabled ";
+					}
+			echo"></td></tr>";
+			if($_REQUEST['action']=='delete')
+			{
+				echo"<tr>
+					<td align='left'><input type='submit' name='back' value='cancel'></td>
+					<td align='right'><input type='submit' name='save' value='Delete'></td>
+				</tr>"; 
+			}
+			if($_REQUEST['action']=='new')
+			{
+				echo"<tr>
+					<td align='left'><input type='submit'  name='back' value='cancel'></td>
+					<td align='right'><input type='submit' class='submit button' name='save' value='Save'></td>
+				</tr>"; 
+			}
+			if($_REQUEST['action']=='edit')
+			{
+				echo"<tr>
+					<td align='left'><input type='submit' name='back' value='cancel'></td>
+					<td align='right'><input type='submit' name='save' value='Ok'></td>
+				</tr>"; 
+			}
+			echo"</form></div>";
+		}	
+	}					//end connection
+?>
+</html>

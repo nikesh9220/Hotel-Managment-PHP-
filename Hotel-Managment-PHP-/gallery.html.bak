@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Metamorphosis Design Free Css Templates</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="styles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<div id="bg_top">
+
+
+
+<div id="main">
+<!-- header begins -->
+<div id="header">
+	<div id="buttons"><div class="but_r"></div>
+      <a href="index.html" class="but but_t"  title="">Home</a><div class="but_r"></div>
+      <a href="blog.html" class="but" title="">Blog</a><div class="but_r"></div>
+      <a href="gallery.html"  class="but" title="">Gallery</a><div class="but_r"></div>
+      <a href="about_us.html"  class="but" title="">About us</a><div class="but_r"></div>
+      <a href="contact_us.html" class="but" title="">Contact us</a><div class="but_r"></div>
+    </div>
+	<div id="logo">
+    	<a href="#">Sunrise</a>
+      	<h2><a href="index.html" id="metamorph">sun is rise at here</a></h2>
+    </div>
+	
+</div>
+<!-- header ends -->
+
+    <!-- content begins -->
+    <div id="content">
+    	<div class="row">
+              <div class="box_img">
+                    <a href="#"><img src="images/img31.jpg" alt="" /></a><div style="height: 7px;"></div>
+                    <h1>New Title</h1>
+                    <div style="height: 5px;"></div>
+                  	Vestibulum tempor ligula est. Nulla tellus mi, sodales tincidunt ultrices vehicula, mattis vel justo. Sed in nisl leo, sit amet ornare enim. </div>
+              <div class="box_razd"></div>
+              <div class="box_img"><a href="#"><img src="images/img32.jpg" alt="" /></a>
+                <div style="height: 7px;"></div>
+                    <h1>New Title</h1>
+                    <div style="height: 5px;"></div>
+                 		Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla bibendum urna eu massa pharetra a te</div>
+          	  <div class="box_razd"></div>
+              <div class="box_img">
+                    <a href="#"><img src="images/img33.jpg" alt="" /></a><div style="height: 7px;"></div>
+                    <h1>New Title</h1>
+                    <div style="height: 5px;"></div>
+                  Quisque malesuada pretium magna, sed posuere tellus vulputate eu. In ut varius leo. Ut ante nisl, faucibus ut mollis at, suscipit et </div>
+              <div style="clear: both"></div>
+    		
+    	</div>
+        <div class="left_line"></div>
+        <div class="row">
+          <div class="box_img">
+                    <a href="#"><img src="images/img34.jpg" alt="" /></a><div style="height: 7px;"></div>
+                    <h1>New Title</h1>
+                    <div style="height: 5px;"></div>
+                  	Mauris at magna odio, vitae sagittis dui. Pellen- tesque vehicula, ante ac egestas elementum, ante ante volutpat lorem, sed imperdiet quam.</div>
+              <div class="box_razd"></div>
+          <div class="box_img"><a href="#"><img src="images/img35.jpg" alt="" /></a>
+                <div style="height: 7px;"></div>
+                    <h1>New Title</h1>
+                    <div style="height: 5px;"></div>
+                 		Sed non scelerisque nibh. Fusce venenatis lobortis nunc, vitae laoreet mi ultricies at. Mauris in dui eget lacus lobortis ultrices.</div>
+          	  <div class="box_razd"></div>
+          <div class="box_img">
+                    <a href="#"><img src="images/img36.jpg" alt="" /></a><div style="height: 7px;"></div>
+                    <h1>New Title</h1>
+                    <div style="height: 5px;"></div>
+                  Proin tellus risus, suscipit quis euismod in, malesuada eu justo. In lobortis tristique elit, non fringilla leo adipiscing a.</div>
+              <div style="clear: both"></div>
+    		
+    	</div>
+        <div class="left_line"></div>
+        <div class="row">
+          <div class="box_img">
+                    <a href="#"><img src="images/img37.jpg" alt="" /></a><div style="height: 7px;"></div>
+                    <h1>New Title</h1>
+                    <div style="height: 5px;"></div>
+                  	Aenean fringilla sapien ante. Mauris lacus tortor, interdum vel vulputate et, feugiat sed arcu. Vestibulum a nunc et tortor faucibus.</div>
+              <div class="box_razd"></div>
+          <div class="box_img"><a href="#"><img src="images/img38.jpg" alt="" /></a>
+                <div style="height: 7px;"></div>
+                    <h1>New Title</h1>
+                    <div style="height: 5px;"></div>
+                 		Phasellus non justo non neque suscipit tempus. Nunc nulla nisl, feugiat ac tristique et, fringilla vulputate nunc. </div>
+          	  <div class="box_razd"></div>
+          <div class="box_img">
+                    <a href="#"><img src="images/img39.jpg" alt="" /></a><div style="height: 7px;"></div>
+                    <h1>New Title</h1>
+                    <div style="height: 5px;"></div>
+                  Proin ipsum eros, elementum accumsan euismod ac, interdum accumsan risus. Viva- mus tempus porta diam, at consequat eros.</div>
+              <div style="clear: both"></div>
+    		
+    	</div>
+        
+    
+        
+    </div>
+    <!-- content ends --> 
+    <div style="height:35px"></div>
+
+</div>
+
+
+
+
+
+<!-- bottom begin -->
+    <div id="bottom_bot">
+    <div id="bottom">
+        <div id="bottom_all">
+        <div id="bottom_all_bot">
+      <div id="b_col1">
+              <h1>Services</h1>
+                <div style="height:10px"></div>
+                    <ul class="spis_bot">
+                        <li><a href="#">Service Number 1 </a></li>
+                        <li><a href="#">Service Number 2 </a></li>
+                        <li><a href="#">Service Number 3 </a></li>
+                        <li><a href="#">Service Number 4 </a></li>
+                        <li><a href="#">Service Number 5 </a></li>
+                        <li><a href="#">Service Number 6 </a></li>
+                        <li><a href="#">Service Number 7 </a></li>
+                    </ul>
+                </div>
+                <div id="b_col2">
+                    <h1>Follow Us</h1>
+                    <div style="height:15px"></div>
+                  <ul class="spis_fu">
+                        <li><img src="images/fu_i1.png" class=" fu_i" alt="" /><a href="#">Subscribe to Blog</a></li>
+                        <li><img src="images/fu_i2.png" class=" fu_i" alt="" /><a href="#">Be a fan on Facebook</a></li>
+                        <li><img src="images/fu_i3.png" class=" fu_i" alt="" /><a href="#">RSS Feed</a></li>
+                        <li><img src="images/fu_i4.png" class=" fu_i" alt="" /><a href="#">Follow us on Twitter</a></li>
+                  </ul> 
+            	</div>
+    
+            	<div id="b_col3">
+                    <h1>Follow Us</h1>
+                  	<div style="height:15px"></div>
+                    <div class="lh">
+                    	1234 SomeStreet<br />
+                        Brooklyn, NY 11201<br />
+                        Phone: 1(234) 567 8910<br />
+                        Fax: 1(234) 567 8910<br />
+                        E-mail: companyname@yahoo.com 
+                    </div>
+                        
+          		</div>
+                <div id="b_col4">
+                	<h1>About Us</h1>
+                    <div style="height:15px"></div>
+                    <b>Vestibulum vel lacus eget nisl.</b><br />
+                    Nulla mollis, magna quis feugiat faucibus, risus lorem lacinia justo, et adipiscing tortor lacus in nunc.<br /><br />
+					<b>Duis in tellus vel ipsum bibendum.</b><br />
+					Nunc eget mi id risus tempor rhoncus. Integer lectus sapien, pulvinar non ornare quis, vulputate vel eros.
+                        
+          		</div>
+          	<div style="clear: both; height:20px;"></div>
+        </div>     
+        </div>  
+        <!-- footer begins -->
+        <div id="footer">
+            Copyright  2012. Designed by <a href="http://www.metamorphozis.com/" title="Website Templates">Website Templates</a><br />
+            <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a> | <a href="http://validator.w3.org/check/referer" title="This page validates as XHTML 1.0 Transitional"><abbr title="eXtensible HyperText Markup Language">XHTML</abbr></a> | <a href="http://jigsaw.w3.org/css-validator/check/referer" title="This page validates as CSS"><abbr title="Cascading Style Sheets">CSS</abbr></a>
+        </div>
+        <!-- footer ends -->
+        
+        
+         
+    </div>
+    </div>
+<!-- bottom end --> 
+
+</div>
+
+
+
+</body>
+</html>

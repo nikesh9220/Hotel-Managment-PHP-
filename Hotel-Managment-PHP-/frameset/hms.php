@@ -1,0 +1,145 @@
+<html>
+<head>
+    <style type='text/css'>
+        table {
+            margin: 15px 15px;
+        }
+
+        body {
+            color: #6D6D6D;
+            background: #f5f5f5;
+            font-family: inherit;
+        }
+
+        h1 {
+            font-weight: lighter;
+            margin: 5px 10px;
+            margin-bottom: 20px;
+            font-family: inherit;
+            font-size: 25px;
+            line-height: 40px;
+            text-align: left;
+        }
+
+    </style>
+    <script>
+        function validate() {
+            var name = document.form.upsw.value;
+
+            if (name == null || name == "") {
+                alert("Enter your password");
+                document.form.upsw.focus();
+                return false;
+            }
+            var name = document.form.npsw.value;
+
+            if (name == null || name == "") {
+                alert("Enter new password");
+                document.form.npsw.focus();
+                return false;
+            }
+            var name = document.form.cpsw.value;
+
+            if (name == null || name == "") {
+                alert("confirm password");
+                document.form.cpsw.focus();
+                return false;
+            }
+        }
+    </script>
+
+
+</head>
+<body>
+<?php
+$con = mysql_connect('localhost', 'root', '');
+if ($con)
+{
+//echo "db coonected"."<br>";
+
+mysql_select_db("hms", $con);
+
+
+if (isset($_POST['login']))        //click Login button
+{
+    $id = $_POST['id'];
+    $psw = $_POST['psw'];
+    //$pass_hashed = md5($psw);
+    /*$result=mysql_query("select * from Admin_profile where Ad_Email_id='".mysql_real_escape_string($id)."' and Ad_psw='".mysql_real_escape_string($pass_hashed)."'");*/
+
+    $result = mysql_query("select * from Admin_profile where Ad_Email_id='" . mysql_real_escape_string($id) . "' and Ad_psw='" . mysql_real_escape_string($psw) . "'");
+
+    if (mysql_num_rows($result) > 0) {
+        session_start();
+        $_SESSION["A_id"] = $id;
+        header("location:index.html");
+
+        $row = mysql_fetch_array($result);
+        echo "welcome " . $row['Ad_fname'] . " " . $row['Ad_lname'] . "..!!";
+        echo "hi";
+        ?>
+
+        <form action="<?php $_PHP_SELF ?>" method="POST">
+            <input type="submit" name="change" value="Change pasword">
+        </form>
+        <form action="edit.php" method="POST">
+            <input type="submit" name="edit" value="Edit profile">
+            <input type="submit" name="show" value="Show profile">
+        </form>
+        <?php
+    } else {
+        echo "<script language='javascript'> alert('INVALID ID OR PASSWORD');window.open('login.html','');</script>";
+    }
+}
+
+session_start();
+if (isset($_SESSION['A_id']))
+{
+?>
+<form action="<?php $_PHP_SELF ?>" method="POST" name='form' onsubmit="return validate();">
+    <table border=0>
+        <tr>
+            <td>Enter your password</td>
+            <td>:&nbsp&nbsp</td>
+            <td><input id="psw" type="password" name="upsw"></td>
+        </tr>
+        <tr>
+            <td>Enter New password</td>
+            <td>:&nbsp&nbsp</td>
+            <td><input type="password" name="npsw"></td>
+        </tr>
+        <tr>
+            <td>conform Password</td>
+            <td>:&nbsp&nbsp</td>
+            <td><input type="password" name="cpsw"></td>
+        </tr>
+        <tr>
+            <td><input class="submit button" type="submit" name="chng" value="save"></td>
+        </tr>
+        <?php
+
+        if (isset($_POST['chng']))    //click Change button
+        {
+            echo "<h1>Change Password</h1>";
+            $upsw = $_POST['upsw'];
+            $n_psw = $_POST['npsw'];
+            $c_psw = $_POST['cpsw'];
+
+            if ($n_psw == $c_psw)        //new psw and conform psw is match or not
+            {
+
+                $change = mysql_query("update Admin_profile set  Ad_psw='$n_psw' where Ad_psw='$upsw'");
+                if ($change > 0) {
+                    echo "<b>" . "your password changed successfully.." . "<b>";
+                    header("location:content.php");
+                }
+            } else {
+                echo "password not-match";
+            }
+        }
+        }
+        }
+        ?>
+</form>
+</body>
+</html>

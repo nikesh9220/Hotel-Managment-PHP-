@@ -1,0 +1,139 @@
+<html>
+<head>
+	<style type='text/css'>
+		table {
+				font-family: verdana,arial,sans-serif;
+				font-size:14px;
+				color:#333333;
+				border-width: 1px;
+				border-color: #999999;
+				border-collapse: collapse;
+				margin-top:15px;
+			}
+		table th {
+			background-color:#AED1D7;
+			border-width: 1px;
+			padding: 8px;
+			border-style: solid;
+			border-color: #a9c6c9;
+		}
+		table tr {
+			background-color:#CEDFE1;
+		}
+		tr:nth-child(even) {
+			background: #C5DADA
+		}
+		
+		tr:nth-child(odd) {
+			background: #d4e3e5
+		}
+		table tr:hover {
+			background-color:#a9c6c9;
+		}
+		table td {
+			border-width: 1px;
+			padding: 8px;
+			border-style: solid;
+			border-color: #a9c6c9;
+		}
+		a.button{
+			border-radius: 10px;
+			border: 2px solid #635151;
+			color: #ffffff;
+			box-shadow: #464C2E 4px 4px 2px;
+			background-color:#BBBBBB;
+			text-decoration: none;
+			text-shadow: #000000 5px 5px 15px;
+			font-size:15px;
+			padding: 5px 10px;
+		}
+		a.button:hover{
+			background-color:#A2A2A2;
+		}
+		a.button:active{
+			position:relative;
+			top:2px;
+			box-shadow: #B0B690 4px 4px 2px;
+		}
+		p.button{margin-top:15px;}
+		table.sec tr{
+			background-color:#000000;
+		}
+		a.new{text-decoration:none;}
+	
+	</style>
+</head>
+</html>
+
+<?php
+
+	$con=mysql_connect('localhost','root','');
+
+		if(!$con)
+		{
+		die('database not connect');
+		}
+		
+		
+		mysql_select_db('hms',$con);
+		
+		$sql=mysql_query('select count(Cu_id) total_records from customer_info');
+		
+		$rows = mysql_fetch_array($sql);
+		$rec_count = $rows['total_records'];
+		
+		$rec_limit =3;
+		if( isset($_GET{'page'} ) )
+			{
+			   $page = $_GET{'page'} + 1;
+			   $offset = $rec_limit * $page ;
+			}
+		else
+			{
+			   $page = 0;
+			   $offset = 0;
+			}
+		$left_rec = $rec_count - ($page * $rec_limit);
+		
+		$result=mysql_query("select * from customer_info LIMIT $offset, $rec_limit");
+		echo "<a href='customer_all.php?action=new' >Create New Customer</a>";
+		echo "<table border=1 width=100%>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Mobile number</th>
+			<th>Email</th>
+			<th>Address</th>
+			<th>city</th>
+			<th>state</th>
+			<th>postal code</th>
+			<th>Option</th>
+		</tr>";
+		while($row=mysql_fetch_array($result))
+		{
+			echo "<tr><td>".$row['Cu_id']."<td>".$row['Cu_name']."<td>".$row['Cu_Mo_no']."<td>".$row['Cu_Email_id']."<td>".$row['Cu_Address']."<td>".$row['Cu_City'] . "<td>".$row['Cu_State']."<td>".$row['Cu_Postal_code']."<td><a href='customer_all.php?id={$row['Cu_id']}&action=edit' class='new'><input type='submit' name='edit' value='Edit'></a>"."<a href='customer_all.php?id={$row['Cu_id']}&action=delete' class='new'><input type='submit' name='delete' value='Delete'></a>"."</tr>";
+		}
+		echo "</table>";
+		//echo "left:".$left_rec. " Page:".$page. " Offset:".$offset."  ".$rec_limit;
+		
+		if($page==0 and $left_rec <= $rec_limit)
+		{
+		}
+		else if($page!=0 and $left_rec <= $rec_limit )
+		{
+		   $last = $page - 2;
+		   $first= ($page=-1);
+		   echo "<p class='button'><a href=".$_SERVER['PHP_SELF']."?page=$last class='button'>Previous</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+		   echo "<a href=".$_SERVER['PHP_SELF']."?page=$first class='button'>Go First page</a></p>";
+		}
+		else if( $page > 0 )
+		{
+			$last = $page - 2;
+			echo "<p class='button'><a href=".$_SERVER['PHP_SELF']."?page=$last class='button'>Previous</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+			echo "<a href=".$_SERVER['PHP_SELF']."?page=$page class='button'>Next</a></p>";
+		}
+		else if( $page == 0 )
+		{
+		   echo "<p class='button'><a href=".$_SERVER['PHP_SELF']."?page=$page class='button'>Next</a></p>";
+		}
+?>

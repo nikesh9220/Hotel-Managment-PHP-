@@ -1,0 +1,18 @@
+<html>
+<body bgcolor="orange">
+</body>
+<?php
+session_start();
+//echo"<center><img src='somerset_house_london_england-wallpaper-1920x1080.jpg' width='1166' height='450'></center>";
+	if(isset($_SESSION['A_id']))
+	{
+/*?>
+			<form action="hms.php" method="POST">
+			<input type="submit" name="change" value="Change pasword">
+			</form>
+			<form action="edit.php" method="POST">
+			<input type="submit" name="edit" value="Edit profile">
+			<input type="submit" name="show" value="Show profile">
+			</form> 
+<?php*/ } ?>		
+</html>

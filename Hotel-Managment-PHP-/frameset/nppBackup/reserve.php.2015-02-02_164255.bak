@@ -1,0 +1,158 @@
+<html>
+<head>
+	<style type='text/css'>
+		div.rsrv{
+			width:300px;
+			border-radius:20px;
+			float:left;
+			margin:0px;
+		}
+		div.rm{
+			width:500px;
+			float:left;
+			border-radius:20px;
+			margin-left:200px;
+		}
+	</style>
+	<script>
+	function Numbers(event) 
+	   {
+			var e = event || evt; // for trans-browser compatibility
+			var charCode = e.which || e.keyCode;
+			if (charCode > 31 && (charCode < 48 || charCode > 57))
+			
+			return false;
+			
+			return true;
+		}
+	function validate()
+	{
+	  var number=document.form.rno.value;
+	  if (number==null || number=="")
+	  {
+	  alert("Enter Room number");
+	  document.form.rno.focus();
+	  return false;
+	  }
+	 }
+</script>
+</head>
+</html>
+
+<?php
+	$con=mysql_connect('localhost','root','');
+		if ($con)
+		{
+			mysql_select_db("hms", $con);
+			$rno="";
+			if(isset($_POST['rno']))
+			{
+				$rno=$_POST['rno'];
+			}
+			//echo"<div id='main' style='border:2px solid black'>";
+			echo "<div class='rsrv'><form method='POST' name='form' onsubmit='return validate();'><table border=0>";
+			echo"<tr>
+						<td>Enter Room No:<td>
+						<td><input type='text'  name='rno' value='$rno' autocomplete='off' onkeypress='return Numbers(event);'></td>
+				</tr>";
+				
+				/*echo"<tr><td><select>";
+				$select=mysql_query("select room_no from room_detail");
+				while($rn=mysql_fetch_array($select))
+				{
+					echo"<option name='rno'>".$rn['room_no']."</option>";
+				}
+				echo"</select></td></tr>";*/
+				echo"<tr><td><input class='submit button' type='submit' name='ok' value='Check'></td></tr>";
+				echo "</table></form>";
+				//echo "</div>";
+			
+			if(isset($_POST['ok'])and !empty($_POST['rno']))
+			{
+				$rno=$_POST['rno'];
+				/*echo"<pre>";
+				print_r($_POST);
+				echo"</pre>";
+				*/
+				
+				$select=mysql_query("select room_no from room_detail where room_no=$rno");
+				
+				if(mysql_num_rows($select))
+				{
+					$room=mysql_query("select r_id from reservation_detail where room_no=$rno");
+					
+					if(mysql_num_rows($room))
+					{
+						
+						$row=mysql_fetch_array($room);
+						$rid=$row['r_id'];
+						$check=mysql_query("select check_out from re_master where r_id=$rid");
+						$rows=mysql_fetch_array($check);
+						$cout=$rows['check_out'];
+						echo "<h4>".$rno." Rooms's check out date is ".$cout."</h4>";
+					}
+					else
+					{
+						echo "<h4>".$rno." Room is available</h4>";
+					}
+				}
+				else
+				{
+						echo "enter valid room no";
+				}
+					
+			}
+				echo"</div>";
+				echo"<div class='rm'>";
+
+					include_once('room_info.php');
+					if( isset($_GET{'page'} ) )
+					{
+					   $page = $_GET{'page'} + 1;
+					   $offset = $rec_limit * $page ;
+					}
+					else
+					{
+					   $page = 0;
+					   $offset = 0;
+					}
+				
+					while($row=mysql_fetch_array($result))
+					{
+						echo"<tr>";
+						echo"<td>".$row['Room_no']."</td>";
+						echo"<td>".$row['Rm_type']."</td>";
+						echo"<td>".$row['Rm_No_bed']."</td>";
+						echo"<td>".$row['Rm_price']."</td>";
+						echo"</tr>";
+					}
+					//echo"<tr bgcolor='white'><td colspan=4><input type='submit' name='back' value='back'></td></tr>";
+					echo"</table>";
+					
+					//echo "left:".$left_rec. " Page:".$page. " Offset:".$offset."  ".$rec_limit;
+					if($page==0 and $left_rec <= $rec_limit)
+					{
+					}
+					else if($page!=0 and $left_rec <= $rec_limit )
+					{
+						
+					   $last = $page - 2;
+					   $first= ($page=-1);
+					   echo "<p><a href=".$_SERVER['PHP_SELF']."?page=$last>Previous</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+					   echo "<a href=".$_SERVER['PHP_SELF']."?page=$first>Go First page</a></p>";
+					}
+					else if( $page > 0 )
+					{
+						$last = $page - 2;
+						echo "<p><a href=".$_SERVER['PHP_SELF']."?page=$last>Previous</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+						echo "<a href=".$_SERVER['PHP_SELF']."?page=$page>Next</a></p>";
+					}
+					else if( $page == 0 )
+					{
+					   echo "<p><a href=".$_SERVER['PHP_SELF']."?page=$page>Next</a></p>";
+					}
+	
+				echo"</div>";
+				//echo"</div>";
+		}
+?>
